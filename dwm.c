@@ -694,9 +694,11 @@ dirtomon(int dir)
 
 	if (dir > 0) {
 		if (!(m = selmon->next))
-			m = mons;
+			// Stop at rightmost mon
+			m = selmon;
 	} else if (selmon == mons)
-		for (m = mons; m->next; m = m->next);
+		// Stop at leftmost mon
+		m = selmon;
 	else
 		for (m = mons; m->next != selmon; m = m->next);
 	return m;
